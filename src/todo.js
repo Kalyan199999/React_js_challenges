@@ -8,6 +8,9 @@ function Todo() {
 
     const [selected , setSelected] = useState([]);
 
+    const [showItems , setShowItems] = useState(false);
+    const [showSelected , setShowSelected] = useState(true);
+
     const [search , setSearch] = useState("");
 
     useEffect(()=>{
@@ -21,18 +24,29 @@ function Todo() {
         if(search.length === 0)
         {
             setItems([]);
+            setShowSelected(true);
         }
         else{
             setItems(data);
+            setShowItems(true);
+            setShowSelected(false);
+            
         }
     }
     
     function insertItem(item) {
 
-        setSelected([...selected , item]);
+        if(item.length !== 0)
+        {
+            setSelected([...selected , item]);
+        }
 
         setSearch("");
-        
+
+        setShowItems(false);
+
+        setShowSelected(true);
+
     }
 
     function deleteItem(item) {
@@ -53,8 +67,9 @@ function Todo() {
                     <button onClick={(e)=>{insertItem(search)}}>✔</button>
                 </div>
 
-                <div className="items">
-
+                {
+                    showItems && 
+                    <div className="items">
                     {
                         items.filter((ele)=>{
                             return ele.toLowerCase().includes(search.toLowerCase());
@@ -69,10 +84,13 @@ function Todo() {
                             )
                         })
                     }
-
                 </div>
+                }
 
-                <div className='selected-items'>
+                {
+                    showSelected &&
+
+                    <div className='selected-items'>
                     {
                         selected.map((ele,idx)=>{
                             return (
@@ -85,6 +103,8 @@ function Todo() {
                         })
                     }
                 </div>
+                }
+                
             </div>
         </>
     )
