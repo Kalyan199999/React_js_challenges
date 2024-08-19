@@ -1,0 +1,50 @@
+
+.timer{
+    width: 100vw;
+    height: 100vh;
+    background-color: skyblue;
+
+    display: flex;
+    justify-content: center;
+}
+
+.card{
+    width: 25vw;
+    height: 30vh;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: white;
+
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time{
+    display: flex;
+    font-size: 30px;
+
+    padding: 5px;
+}
+
+.btn{
+    display: flex;
+    gap: 10px;
+}
+
+button{
+    outline: none;
+    color: white;
+    
+    cursor: pointer;
+}
+
+.re-start{
+    background-color: blue;
+}
+
+.stop{
+    background-color: red;
+}
